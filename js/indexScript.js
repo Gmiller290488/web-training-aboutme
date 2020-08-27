@@ -1,3 +1,10 @@
+// Constants
+const cardImages = ['music', 'dog', 'ball', 'videogames'];
+const cardBack = "card-back";
+const cardFront = "card-front";
+const cardCircleImg = "card-circle-img"
+const offWhiteColourString = "#f8f6f6";
+
 function getRandomColour() {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
@@ -11,26 +18,33 @@ function shouldTextBeWhite(bgColour) {
     let b = (255 - parseInt(bgColour[2])).toString();
 
     return (r * 0.299 + g * 0.587 + b * 0.114 > 149);
-            // ? formatRGBValuesToString([255, 255, 255])
-            // : formatRGBValuesToString([0, 0, 0]);
 }
-
 
 function formatRGBValuesToString(arr) {
     return "rgb(" + arr[0] + "," + arr[1] + "," + arr[2] + ")";
 }
 
-for (let i=0; i<4; i++) {
-    let cardImages = ['music', 'dog', 'ball', 'videogames']
-    let bgColour = getRandomColour();
-    let formattedBgColour = formatRGBValuesToString(bgColour);
-    let textIsWhite = shouldTextBeWhite(bgColour); 
-    let textColour = textIsWhite ? formatRGBValuesToString([255, 255, 255]) : formatRGBValuesToString([0, 0, 0]);
-    let linearBgColour = `linear-gradient(to bottom, ${formattedBgColour} 0%,${formattedBgColour} 30%,${formattedBgColour} 30%,#f8f6f6 30%, #f8f6f6 100%)`;
-    document.getElementsByClassName("card-back")[i].style.background = linearBgColour;
-    document.getElementsByClassName("card-back")[i].style.color = textColour;
-    document.getElementsByClassName("card-front")[i].style.background = formattedBgColour;
-    document.getElementsByClassName("card-front")[i].style.backgroundImage = `url('../images/${cardImages[i]}${textIsWhite ? '-white' : '-black'}.png')`;
-    document.getElementsByClassName("card-circle-img")[i].style.backgroundImage = `url('../images/${cardImages[i]}${textIsWhite ? '-white' : '-black'}.png')`;
-    document.getElementsByClassName("card-front")[i].style.color = textColour;
+function formatImageUrl(cardImage, textColourString) {
+    return `url('../images/${cardImage}${textColourString}.png')`
 }
+
+function setColours(gradientColour, backgroundColour, textColour, imageUrl, index) {
+    document.getElementsByClassName(cardBack)[index].style.background = gradientColour;
+    document.getElementsByClassName(cardBack)[index].style.color = textColour;
+    document.getElementsByClassName(cardFront)[index].style.background = backgroundColour;
+    document.getElementsByClassName(cardFront)[index].style.backgroundImage = imageUrl;
+    document.getElementsByClassName(cardCircleImg)[index].style.backgroundImage = imageUrl;
+}
+
+function generateColours() {
+    for (let i=0; i<4; i++) {
+        let bgColour = getRandomColour();
+        let formattedBackgroundColour = formatRGBValuesToString(bgColour);
+        let textIsWhite = shouldTextBeWhite(bgColour); 
+        let textColour = textIsWhite ? formatRGBValuesToString([255, 255, 255]) : formatRGBValuesToString([0, 0, 0]);
+        let formattedGradientBackgroundColour = `linear-gradient(to bottom, ${formattedBackgroundColour} 0%, ${formattedBackgroundColour} 30%, ${offWhiteColourString} 30%, ${offWhiteColourString} 100%)`;
+        setColours(formattedGradientBackgroundColour, formattedBackgroundColour, textColour, formatImageUrl(cardImages[i], (textIsWhite ? '-white' : '-black')), i)
+    }
+}
+
+generateColours();
