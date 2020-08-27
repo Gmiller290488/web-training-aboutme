@@ -27,10 +27,10 @@ for (let i=0; i<4; i++) {
     let textIsWhite = shouldTextBeWhite(bgColour); 
     let textColour = textIsWhite ? formatRGBValuesToString([255, 255, 255]) : formatRGBValuesToString([0, 0, 0]);
     let linearBgColour = `linear-gradient(to bottom, ${formattedBgColour} 0%,${formattedBgColour} 30%,${formattedBgColour} 30%,#f8f6f6 30%, #f8f6f6 100%)`;
-    document.getElementsByClassName("flip-card-back")[i].style.background = linearBgColour;
-    document.getElementsByClassName("flip-card-back")[i].style.color = textColour;
-    document.getElementsByClassName("flip-card-front")[i].style.background = formattedBgColour;
-    document.getElementsByClassName("flip-card-front")[i].style.backgroundImage = `url('../images/${cardImages[i]}${textIsWhite ? '-white' : '-black'}.png')`;
-    document.getElementsByClassName("flip-card-circle-img")[i].style.backgroundImage = `url('../images/${cardImages[i]}${textIsWhite ? '-white' : '-black'}.png')`;
-    document.getElementsByClassName("flip-card-front")[i].style.color = textColour;
+    document.getElementsByClassName("card-back")[i].style.background = linearBgColour;
+    document.getElementsByClassName("card-back")[i].style.color = textColour;
+    document.getElementsByClassName("card-front")[i].style.background = formattedBgColour;
+    document.getElementsByClassName("card-front")[i].style.backgroundImage = `url('../images/${cardImages[i]}${textIsWhite ? '-white' : '-black'}.png')`;
+    document.getElementsByClassName("card-circle-img")[i].style.backgroundImage = `url('../images/${cardImages[i]}${textIsWhite ? '-white' : '-black'}.png')`;
+    document.getElementsByClassName("card-front")[i].style.color = textColour;
 }
