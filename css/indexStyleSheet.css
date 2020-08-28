@@ -3,7 +3,6 @@
 body {
     background-color: #f7f4f4;
     font-family: 'Playfair Display', serif;
-    background-size: 40px 40px;
 }
 
 .intro-container {
@@ -77,7 +76,6 @@ body {
     display: grid;
     grid-gap: 1.5rem;
     grid-auto-rows: 1fr;
-    padding: 3rem;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     padding: 50px 150px;
 }
@@ -89,7 +87,7 @@ body {
   display: flex;
   transform-style: preserve-3d;
   transition: 0.707s transform;
-  
+  width: 100%;
 }
 
 .card {
@@ -131,4 +129,8 @@ body {
   border-radius: 50px;
   background-color: #F00;
   margin: 0 auto;
+}
+
+.edit-btn {
+  margin-bottom: 10px;
 }
