@@ -47,4 +47,19 @@ function generateColours() {
     }
 }
 
+let editBtns = document.getElementsByClassName("edit-btn");
+for (let i=0; i<4; i++) {
+    editBtns[i].id = i;
+    editBtns[i].onclick = showAlert
+}
+
+
+function showAlert(event) {
+    const btnId = event.target.id;
+    let paragraphs = document.getElementsByTagName("p");
+    let text = prompt("", paragraphs[btnId].textContent.trim()); 
+    
+    paragraphs[btnId].textContent = text;
+}
+
 generateColours();
